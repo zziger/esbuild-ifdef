@@ -15,6 +15,11 @@ export interface IPluginSettings {
      */
     regExp?: RegExp;
     /**
+     * File path regExp.
+     * Defaults to `/\.[jt]sx?/`.
+     */
+    filePath?: RegExp;
+    /**
      * Require ///.
      * Defaults to **true**.
      */
@@ -38,6 +43,7 @@ const regExps = {
 
 function ifdefPlugin(settings: IPluginSettings = {}): Plugin {
     const regExp = settings.regExp ?? (settings.requireTripleSlash !== false ? regExps.triple : regExps.double);
+    const fileRegExp = settings.filePath ?? /\.[jt]sx?/;
     const variables = Object.freeze(settings.variables ?? process.env);
 
     function getToken(line): [string, string, number, number] {
@@ -171,7 +177,7 @@ function ifdefPlugin(settings: IPluginSettings = {}): Plugin {
     return {
         name: 'ifdef',
         setup(build) {
-            build.onLoad({filter: /\.js/}, async args => {
+            build.onLoad({filter: fileRegExp}, async args => {
                 const warnings: Message[] = [];
                 try {
                     const text = await fs.promises.readFile(args.path, 'utf8');

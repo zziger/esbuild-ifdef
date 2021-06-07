@@ -64,6 +64,7 @@ esbuild.build({
 | `verbose`            | `boolean`             | `false`       | Enabled logging of the included strings and expression results
 | `fillWithSpaces`     | `boolean`             | `false`       | Fill removed lines with spaces instead of commenting out
 | `requireTripleSlash` | `boolean`             | `true`        | Require usage of /// before directives
+| `filePath`           | `RegExp`              | `/\.[jt]sx?/` | File matching RegExp. 
 | `regExp`             | `RegExp`              | -             | Custom parsing RegExp. Overrides `requireTripleSlash` option. RegExp should have one group named `token` and one group named `expression`. Default RegExp for parsing triple slash directives is `/\/\/\/[\s]*#(?<token>.*?)(?:[\s]+(?<expression>.*?))?[\s]*$/` 
 | `variables`          | `Record<string, any>` | `process.env` | Variables for the expressions
 
