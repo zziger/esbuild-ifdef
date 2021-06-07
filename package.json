@@ -1,6 +1,6 @@
 {
   "name": "esbuild-ifdef",
-  "version": "0.1.2",
+  "version": "0.1.3",
   "main": "dist/index.js",
   "module": "dist/index.mjs",
   "types": "",
@@ -8,8 +8,14 @@
     "build": "tsup index.ts --dts --format cjs,esm --minify"
   },
   "files": [
-    "dist"
+    "dist",
+    "README.md"
   ],
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/zziger/esbuild-ifdef.git"
+  },
   "dependencies": {
     "@types/node": "^15.12.1",
     "esbuild": "^0.12.6",
