@@ -188,7 +188,6 @@ function ifdefPlugin(settings: IPluginSettings = {}): Plugin {
                     return {
                         contents: formatted,
                         warnings,
-                        loader: 'js'
                     }
                 } catch (e) {
                     if (!e.location) throw e;
