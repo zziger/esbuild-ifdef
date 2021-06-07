@@ -1,0 +1,22 @@
+{
+  "name": "esbuild-ifdef",
+  "version": "0.1.2",
+  "main": "dist/index.js",
+  "module": "dist/index.mjs",
+  "types": "",
+  "scripts": {
+    "build": "tsup index.ts --dts --format cjs,esm --minify"
+  },
+  "files": [
+    "dist"
+  ],
+  "dependencies": {
+    "@types/node": "^15.12.1",
+    "esbuild": "^0.12.6",
+    "ts-node": "^10.0.0",
+    "typescript": "^4.3.2"
+  },
+  "devDependencies": {
+    "tsup": "^4.11.2"
+  }
+}
