@@ -1,7 +1,7 @@
 // noinspection ExceptionCaughtLocallyJS
 
 import * as fs from "fs";
-import {Message, Plugin} from "esbuild";
+import {Loader, Message, Plugin} from "esbuild";
 import exp = require("constants");
 
 export interface IPluginSettings {
@@ -174,6 +174,8 @@ function ifdefPlugin(settings: IPluginSettings = {}): Plugin {
         return mapped.join('\n');
     }
 
+    const loaders = ['tsx', 'jsx', 'ts', 'js'];
+
     return {
         name: 'ifdef',
         setup(build) {
@@ -185,9 +187,12 @@ function ifdefPlugin(settings: IPluginSettings = {}): Plugin {
                         ...msg,
                         location: {...msg.location, file: args.path}
                     } as Message));
+                    const path = args.path.split('.');
+                    const ext = path[path.length - 1];
                     return {
                         contents: formatted,
                         warnings,
+                        loader: (loaders.includes(ext) ? ext : 'js') as Loader
                     }
                 } catch (e) {
                     if (!e.location) throw e;
