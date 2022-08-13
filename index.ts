@@ -2,7 +2,6 @@
 
 import * as fs from "fs";
 import {Loader, Message, Plugin} from "esbuild";
-import exp = require("constants");
 
 export interface IPluginSettings {
     /**
@@ -44,7 +43,7 @@ const regExps = {
 function ifdefPlugin(settings: IPluginSettings = {}): Plugin {
     const regExp = settings.regExp ?? (settings.requireTripleSlash !== false ? regExps.triple : regExps.double);
     const fileRegExp = settings.filePath ?? /\.[jt]sx?/;
-    const variables = Object.freeze(settings.variables ?? process.env);
+    const variables = Object.freeze(settings.variables ?? {...process.env});
 
     function getToken(line): [string, string, number, number] {
         const match = line.match(regExp);
