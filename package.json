@@ -23,13 +23,12 @@
     "type": "git",
     "url": "https://github.com/zziger/esbuild-ifdef.git"
   },
-  "dependencies": {
-    "@types/node": "^15.12.1",
-    "esbuild": "^0.12.6",
-    "ts-node": "^10.0.0",
-    "typescript": "^4.7.4"
+  "peerDependencies": {
+    "esbuild": "^0.15.2"
   },
   "devDependencies": {
-    "tsup": "^6.2.2"
+    "@types/node": "^15.12.1",
+    "tsup": "^6.2.2",
+    "typescript": "^4.7.4"
   }
 }
